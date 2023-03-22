@@ -35,23 +35,15 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'url' => env('MYSQL_DATABASE_URL'),
+            'host' => env('MYSQL_DB_HOST', '127.0.0.1'),
+            'port' => env('MYSQL_DB_PORT', '3307'),
+            'database' => env('MYSQL_DB_NAME', 'larastack'),
+            'username' => env('MYSQL_DB_USER', 'larastack_user'),
+            'password' => env('MYSQL_DB_PASS', ''),
+            'unix_socket' => env('MYSQL_DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -65,12 +57,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'url' => env('PGSQL_DATABASE_URL'),
+            'host' => env('PGSQL_DB_HOST', '127.0.0.1'),
+            'port' => env('PGSQL_DB_PORT', '5432'),
+            'database' => env('PGSQL_DB_NAME', 'larastack'),
+            'username' => env('PGSQL_DB_USER', 'larastack_user'),
+            'password' => env('PGSQL_DB_PASS', 'larastack_password'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
@@ -78,14 +70,44 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => env('MONGO_DB_HOST', '127.0.0.1'),
+            'port' => env('MONGO_DB_PORT', 27017),
+            'database' => env('MONGO_DB_NAME', 'larastack'),
+            'username' => env('MONGO_DB_USER', 'larastack_mongo_user'),
+            'password' => env('MONGO_DB_PASS', 'larastack_mongo_pass'),
+            'options' => [
+                // here you can pass more settings to the Mongo Driver Manager
+                // see https://www.php.net/manual/en/mongodb-driver-manager.construct.php under "Uri Options" for a list of complete parameters that you can use
+
+                'database' => env('DB_AUTHENTICATION_DATABASE', 'admin'), // required with Mongo 3+
+            ],
+        ],
+
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'url' => env('SQLITE_DATABASE_URL'),
+            'database' => env('SQLITE_DB_PATH', database_path('database.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('SQLITE_DB_FOREIGN_KEYS', true),
+        ],
+
+        'phpunit_db' => [
+            'driver' => 'sqlite',
+            'database' => 'phpunit_database.sqlite',
+            'prefix' => '',
+            'foreign_key_constraints' => env('PHPUNIT_DB_FOREIGN_KEYS', true),
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'url' => env('SQLSRV_DATABASE_URL'),
+            'host' => env('SQLSRV_DB_HOST', 'localhost'),
+            'port' => env('SQLSRV_DB_PORT', '1433'),
+            'database' => env('SQLSRV_DB_DATABASE', 'larastack'),
+            'username' => env('SQLSRV_DB_USERNAME', 'larastack_sqlsrv_user'),
+            'password' => env('SQLSRV_DB_PASSWORD', 'larastack_sqlsrv_pass'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
