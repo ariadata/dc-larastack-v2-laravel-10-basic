@@ -11,7 +11,7 @@
         "laravel/horizon": "^5.15",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "mongodb/mongodb": "^1.15"
+        "jenssegers/mongodb": "dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
