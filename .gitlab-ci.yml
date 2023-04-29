@@ -1,0 +1,34 @@
+stages:
+  - update_stage_server
+  - update_production_server
+
+stage_update:
+  stage: update_stage_server
+  image: ariadata/ssh-client-alpine:openssh-client
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$STAGE_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p $STAGE_SSH_PORT $STAGE_IP_ADDRESS >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  only:
+    - stage
+  script:
+    - ssh -o StrictHostKeyChecking=no $STAGE_SSH_USER@$STAGE_IP_ADDRESS -p $STAGE_SSH_PORT "bash /home/production/dc-larastack-v2/update-project.sh stage"
+
+product_update:
+  stage: update_production_server
+  image: ariadata/ssh-client-alpine:openssh-client
+  before_script:
+    - eval $(ssh-agent -s)
+    - echo "$MAIN_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p $MAIN_SSH_PORT $MAIN_IP_ADDRESS >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  when: manual
+  only:
+    - main
+  script:
+    - ssh -o StrictHostKeyChecking=no $MAIN_SSH_USER@$MAIN_IP_ADDRESS -p $MAIN_SSH_PORT "bash /home/production/dc-larastack-v2/update-project.sh main"
