@@ -58,7 +58,7 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('PGSQL_DATABASE_URL'),
-            'host' => env('PGSQL_DB_HOST', '127.0.0.1'),
+            'host' => env('PGSQL_DB_HOST', null),
             'port' => env('PGSQL_DB_PORT', '5432'),
             'database' => env('PGSQL_DB_NAME', 'larastack'),
             'username' => env('PGSQL_DB_USER', 'larastack_user'),
@@ -72,7 +72,7 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => env('MONGO_DB_HOST', '127.0.0.1'),
+            'host' => env('MONGO_DB_HOST', null),
             'port' => env('MONGO_DB_PORT', 27017),
             'database' => env('MONGO_DB_NAME', 'larastack'),
             'username' => env('MONGO_DB_USER', 'larastack_mongo_user'),
@@ -152,7 +152,7 @@ return [
 
         'default' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'host' => env('REDIS_HOST', null),
             'username' => env('REDIS_USERNAME'),
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),
@@ -161,7 +161,7 @@ return [
 
         'cache' => [
             'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'host' => env('REDIS_HOST', null),
             'username' => env('REDIS_USERNAME'),
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),
