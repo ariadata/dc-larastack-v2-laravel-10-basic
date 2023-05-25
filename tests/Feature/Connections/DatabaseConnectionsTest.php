@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\System\Connections;
+namespace Tests\Feature\Connections;
 
 use Illuminate\Support\Facades\DB;
 
@@ -50,11 +50,10 @@ it('can connect to, insert/fetch, and delete from/to Redis',function (){
 	$redis = \Illuminate\Support\Facades\Redis::connection('default');
 	$redis->SET('foo','bar');
 	$result = $redis->GET('foo');
-	
+
 	if($result === 'bar'){
 		// delete the key
 		$redis->del('foo');
 		$this->assertTrue(true);
 	}
 });
-
