@@ -19,23 +19,11 @@ class Kernel extends ConsoleKernel
     }
 
     /**
-     * Define the application's command Short schedules.
-     * https://github.com/spatie/laravel-short-schedule
-     *
-     * @param  \Spatie\ShortSchedule\ShortSchedule  $shortSchedule
-     * @return void
-     */
-    protected function shortSchedule(\Spatie\ShortSchedule\ShortSchedule $shortSchedule)
-    {
-        // $shortSchedule->command('short-command')->everySeconds(2);
-    }
-
-    /**
      * Register the commands for the application.
      *
      * @return void
      */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 
